@@ -16,11 +16,13 @@ Things to consider:
 
 1. One reason to change  
 
-2. cohesive - all members within a class should be working together toward a common goal
+2. cohesive - all members within a class should be working together towards a common goal
 
 3. similar change frequency - all members of a class should change at the same rate 
 
 4. Shouldn't have feature envy - one class is constantly using public fields of another class to perform a task
+
+CustomerManager can be broken down into smaller, dedicated classes:
 
 ```
 class CustomerFetcher 
@@ -45,13 +47,13 @@ class CustomerAddressValidator
 var postCode = account.transactions[0].payee.branch.address.postCode
 ```
 
-the problem with the code is if anything between account and postCode was to change, we may end up an null object error. Say change from getting payee's branch address to billing address.  
+The problem with the code is if anything between account and postCode was to change,we may end up an null object error. i. e. change from getting payee's branch address to billing address.  
 
-if we just want to access a property, we could break the chain into multiple class:
+If we just want to access a property, we could break the chain into multiple class:
 
 1. each class should be responsible for handling null
 
-2. if downstream classes decided to change how to retrieve postCode, change should not be rippled upstream clients 
+2. if downstream classes decided to change how to retrieve postCode, change should not be rippled to upstream clients 
 
 ```
 var postCode = account.GetPayeePostCodeFor(int txnIndex);
@@ -85,7 +87,9 @@ class Payee
 }
 ```
 
-But surely, we should ask ourselves, why do we need postCode and what do we do with it after getting it? Do we use it for calculating delivery distance? Do we use it for calculating delivery cost?
+One of the key elements of OO is about abstractions by hiding its data and only expose the essence of the data through behaviours.
+
+So we should ask ourselves, why do we need postCode and what do we do with it after getting it? Do we use it for calculating delivery distance? Do we use it for calculating delivery cost?
 
 If so, should we be encapsulating this computation right down to the Payee class?
 
