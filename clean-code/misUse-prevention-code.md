@@ -19,7 +19,7 @@ public static class RegexPattern
 }
 ```
 
-
+```
 // regex patterns organised not in conciseness but clarity.
 // quite often when we are presented with a regex like disallow single quote
 // we don't neccessary know what attack it is corelated to.
@@ -69,3 +69,4 @@ public static class RegexRunner
         return patterns.ToList().All(pattern => Regex.Match(input, pattern).Success);
     }
 }
+```
