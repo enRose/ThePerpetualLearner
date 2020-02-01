@@ -289,6 +289,8 @@ C# 3 provides a shortcut: if you don’t specify the property name, but just the
 new { person.Name, IsAdult = (person.Age >= 18) }
 ```
 
+[Chapter 2](https://enrose.github.io/ThePerpetualLearner/csharp-relearn/chapter2-lets-run)
+
 ## Reference:
 * [Microsoft](https://msdn.microsoft.com/en-us/library/windows/desktop/ms681917(v=vs.85).aspx) 
 
